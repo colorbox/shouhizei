@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'This gem support to calculate Japan consumption tax'
   spec.description   = 'This gem support to calculate Japan consumption tax'
-  spec.homepage      = "https://github.com/colorbox/excise_jp"
+  spec.homepage      = "https://github.com/colorbox/shouhizei"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
