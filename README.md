@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-You can get Japanese excise tax rate like below.
+You can get Japanese consumption tax rate like below.
 
 ```ruby
 Shouhizei.rate_on(Date.new(1989, 3, 31))
@@ -38,6 +38,26 @@ Shouhizei.rate_on(Date.new(2014, 4, 1))
 Shouhizei.rate_on()
  => (2/25)
 ```
+
+Calculation tax included price.
+Return value class is Integer.
+```ruby
+Shouhizei.included(price: 100, date: Date.new(2014, 4, 1))
+ => 108 # return value class is Integer
+```
+
+Configuration how to deal fraction round up or round down.
+Default is round down.
+```ruby
+Shouhizei.config[:rounding] = Shouhizei::RoundUp
+Shouhizei.included(price: 10)
+ => 11
+
+Shouhizei.config[:rounding] = Shouhizei::RoundDown
+Shouhizei.included(price: 10)
+ => 10
+```
+
 
 ## Development
 
