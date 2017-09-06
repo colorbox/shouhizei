@@ -19,7 +19,7 @@ module Shouhizei
   end
 
   def self.config
-    @@config ||= {ronding: RoundDown}
+    @@config ||= {rounding: RoundDown}
   end
 
   private
