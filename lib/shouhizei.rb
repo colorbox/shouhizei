@@ -1,19 +1,22 @@
 require 'shouhizei/version'
 require 'yaml'
+require 'active_support'
+require 'active_support/core_ext'
 
 module Shouhizei
   RoundUp = 'Up'
   RoundDown = 'Down'
 
-  def self.rate_on(date = Date.today)
+  def self.rate_on(time = Time.current)
+    date = time.in_time_zone('Asia/Tokyo').to_date
     rate_list.reverse_each do |key_date, rate|
       return rate.to_r if date >= key_date
     end
     0.0r
   end
 
-  def self.included(price:, date: Date.today)
-    included_price = price + price * rate_on(date)
+  def self.included(price:, time: Time.current)
+    included_price = price + price * rate_on(time)
     return included_price.ceil if config[:rounding] == RoundUp
     included_price.floor
   end

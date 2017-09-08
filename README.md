@@ -23,26 +23,39 @@ Or install it yourself as:
 You can get Japanese consumption tax rate like below.
 
 ```ruby
-Shouhizei.rate_on(Date.new(1989, 3, 31))
+Shouhizei.rate_on(Time.zone.local(1989, 3, 31))
  => (0/1)
 
-Shouhizei.rate_on(Date.new(1989, 4, 1))
+Shouhizei.rate_on(Time.zone.local(1989, 4, 1))
  => (3/100)
 
-Shouhizei.rate_on(Date.new(1997, 4, 1))
+Shouhizei.rate_on(Time.zone.local(1997, 4, 1))
  => (1/20)
 
-Shouhizei.rate_on(Date.new(2014, 4, 1))
+Shouhizei.rate_on(Time.zone.local(2014, 4, 1))
  => (2/25)
 
-Shouhizei.rate_on()
+Shouhizei.rate_on # Returns the current consumption tax
  => (2/25)
+```
+
+This considers local timezone and changes to `'Asia/Tokyo'` by using `ActiveSupport::TimeWithZone#in_time_zone` .
+
+```ruby
+> Time.zone = 'Asia/Tokyo'
+=> "Asia/Tokyo"
+> Shouhizei.rate_on(Time.zone.local(1989, 3, 31, 10, 0, 0))
+=> (0/1)
+> Time.zone = 'Hawaii'
+=> "Hawaii"
+> Shouhizei.rate_on(Time.zone.local(1989, 3, 31, 10, 0, 0)) # 1989-04-01 05:00:00 in Japan
+=> (3/100)
 ```
 
 Calculation tax included price.
 Return value class is Integer.
 ```ruby
-Shouhizei.included(price: 100, date: Date.new(2014, 4, 1))
+Shouhizei.included(price: 100, date: Time.zone.local(2014, 4, 1))
  => 108 # return value class is Integer
 ```
 
