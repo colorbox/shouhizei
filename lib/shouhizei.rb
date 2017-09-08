@@ -15,10 +15,10 @@ module Shouhizei
     0.0r
   end
 
-  def self.included(price:, time: Time.current)
-    included_price = price + price * rate_on(time)
-    return included_price.ceil if config[:rounding] == RoundUp
-    included_price.floor
+  def self.including(price:, time: Time.current)
+    including_price = price + price * rate_on(time)
+    return including_price.ceil if config[:rounding] == RoundUp
+    including_price.floor
   end
 
   def self.config

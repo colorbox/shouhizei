@@ -18,16 +18,16 @@ class ShouhizeiTest < Minitest::Test
 
   def test_price_calculation
     Time.zone = 'Asia/Tokyo'
-    assert_equal(108, Shouhizei.included(price: 100, time: Time.zone.local(2014, 4, 1)))
+    assert_equal(108, Shouhizei.including(price: 100, time: Time.zone.local(2014, 4, 1)))
 
     Timecop.freeze(Time.zone.local(2014, 4, 1)) do
       Shouhizei.config[:rounding] = Shouhizei::RoundUp
-      round_up_price = Shouhizei.included(price: 10)
+      round_up_price = Shouhizei.including(price: 10)
       assert_equal(11, round_up_price)
       assert_kind_of(Integer, round_up_price)
 
       Shouhizei.config[:rounding] = Shouhizei::RoundDown
-      round_down_price = Shouhizei.included(price: 10)
+      round_down_price = Shouhizei.including(price: 10)
       assert_equal(10, round_down_price)
       assert_kind_of(Integer, round_down_price)
     end

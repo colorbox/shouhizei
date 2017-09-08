@@ -55,7 +55,7 @@ This considers local timezone and changes to `'Asia/Tokyo'` by using `ActiveSupp
 Calculation tax included price.
 Return value class is Integer.
 ```ruby
-Shouhizei.included(price: 100, date: Time.zone.local(2014, 4, 1))
+Shouhizei.including(price: 100, date: Time.zone.local(2014, 4, 1))
  => 108 # return value class is Integer
 ```
 
@@ -63,11 +63,11 @@ Configuration how to deal fraction round up or round down.
 Default is round down.
 ```ruby
 Shouhizei.config[:rounding] = Shouhizei::RoundUp
-Shouhizei.included(price: 10)
+Shouhizei.including(price: 10)
  => 11
 
 Shouhizei.config[:rounding] = Shouhizei::RoundDown
-Shouhizei.included(price: 10)
+Shouhizei.including(price: 10)
  => 10
 ```
 
