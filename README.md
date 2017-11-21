@@ -1,5 +1,7 @@
 # Shouhizei
 
+[![Build Status](https://travis-ci.org/colorbox/shouhizei.svg?branch=master)](https://travis-ci.org/colorbox/shouhizei)
+
 This gem support to calculate Japan consumption tax
 
 ## Installation
