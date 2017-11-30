@@ -6,7 +6,7 @@ rvm:
 deploy:
   provider: rubygems
   api_key:
-    secure: $RUBYGEMS_ENCRYPTED_API_KEY
+    secure: {{RUBYGEMS_ENCRYPTED_API_KEY}}
   gem: shouhizei
   on:
     tags: true
