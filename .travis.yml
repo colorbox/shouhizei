@@ -1,5 +1,13 @@
 language: ruby
-
 rvm:
   - 2.4.2
   - 2.3.5
+
+deploy:
+  provider: rubygems
+  api_key:
+    secure: $RUBYGEMS_ENCRYPTED_API_KEY
+  gem: shouhizei
+  on:
+    tags: true
+    repo: colorbox/shouhizei
