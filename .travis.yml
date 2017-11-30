@@ -6,7 +6,7 @@ rvm:
 deploy:
   provider: rubygems
   api_key:
-    secure: {{RUBYGEMS_ENCRYPTED_API_KEY}}
+    secure: lk1utvjkXvHrxu/D48M3dDukr4dB9bvcH0LJb2j4phYhaUuYKzEQSmnasIYOMKXsg7vgp8OZKe8OqL6cb4x9alU+811T5G8wE5Y38Tq5QPlKoKSTJHhK4IdKfDzwPA713SPmlrVO8JdX3eCnaFhM6VSOZcVCHBSnHdyuYTrghKXX1yZkf+/ZejJ/F/J1hnGH8b6BC4pgUNREA7IbuQXbTs0wUb2455EjzCGHYdpok1ogT5ZrJor/FwBQ1M8Qb4wXW3u4AU7TOgTgaxBAvgPA5SUNORDaVzcmSlhJEPo6rajrUYKCAUG+pW/F73VDZIpcQhitYu0YYlCWcI36lA+/imfD+JjsahELkJEXRsYz6fdA+RJUkHgfdvn+vchwtJQehqjQ7dKgFZFG4QplEr2eAd9wFLHXQRXT++AvNlShDeWHzBOSgllM9hk5buYkRuRBgLDbjpDQ3kh8xzAf0B5U9FOZj0rJL7HHCl35fc7Qs7e0DB74AD9LUQUxwJPqVMRiG26kqBVOVtfIp/mT7A32xkBY0RpnnSfcVkUnWObLLKyY6fwWemqqXjxjJGBMfu/E6+b9K5Mh1Jf1ROIU3/2m0vFTHP/TDlx/t8djWNp5veuOqSygrRYQLvjOhNX/mefPjyLB48qQnEASQuc+Aih8TftGZrYon5u1ZC3HmYy9cuk=
   gem: shouhizei
   on:
     tags: true
