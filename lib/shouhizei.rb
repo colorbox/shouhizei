@@ -6,6 +6,7 @@ require 'active_support/core_ext'
 module Shouhizei
   RoundUp = 'Up'
   RoundDown = 'Down'
+  Round = 'Round'
 
   def self.rate_on(time = Time.current)
     date = time.in_time_zone('Asia/Tokyo').to_date
@@ -17,6 +18,7 @@ module Shouhizei
 
   def self.including(price:, time: Time.current)
     including_price = price + price * rate_on(time)
+    return including_price.round if config[:rounding] == Round
     return including_price.ceil if config[:rounding] == RoundUp
     including_price.floor
   end

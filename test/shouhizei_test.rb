@@ -30,6 +30,15 @@ class ShouhizeiTest < Minitest::Test
       round_down_price = Shouhizei.including(price: 10)
       assert_equal(10, round_down_price)
       assert_kind_of(Integer, round_down_price)
+
+      Shouhizei.config[:rounding] = Shouhizei::Round
+      round_price = Shouhizei.including(price: 10)
+      assert_equal(11, round_price)
+      assert_kind_of(Integer, round_price)
+
+      round_price = Shouhizei.including(price: 15)
+      assert_equal(16, round_price)
+      assert_kind_of(Integer, round_price)
     end
   end
 end
