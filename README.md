@@ -37,6 +37,12 @@ Shouhizei.rate_on(Time.zone.local(1997, 4, 1))
 Shouhizei.rate_on(Time.zone.local(2014, 4, 1))
  => (2/25)
 
+Shouhizei.rate_on(Time.zone.local(2019, 10, 1))
+ => (1/10)
+
+Shouhizei.rate_on(Time.zone.local(2019, 10, 1), reduced: true) # Return reduced tax rate
+ => (2/25)
+
 Shouhizei.rate_on # Returns the current consumption tax
  => (2/25)
 ```

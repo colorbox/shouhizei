@@ -8,10 +8,12 @@ module Shouhizei
   RoundDown = 'Down'
   Round = 'Round'
 
-  def self.rate_on(time = Time.current)
+  def self.rate_on(time = Time.current, reduced: false)
     date = time.in_time_zone('Asia/Tokyo').to_date
     rate_list.reverse_each do |key_date, rate|
-      return rate.to_r if date >= key_date
+      rate_key = reduced && rate['reduced'] ? 'reduced' : 'default'
+
+      return rate[rate_key].to_r if date >= key_date
     end
     0.0r
   end

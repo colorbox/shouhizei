@@ -10,7 +10,11 @@ class ShouhizeiTest < Minitest::Test
     assert_equal(0.05r, Shouhizei.rate_on(Time.zone.local(1997, 4, 1)))
     assert_equal(0.05r, Shouhizei.rate_on(Time.zone.local(2014, 3, 31)))
     assert_equal(0.08r, Shouhizei.rate_on(Time.zone.local(2014, 4, 1)))
-    assert_equal(0.08r, Shouhizei.rate_on)
+    assert_equal(0.08r, Shouhizei.rate_on(Time.zone.local(2019, 9, 30)))
+    assert_equal(0.08r, Shouhizei.rate_on(Time.zone.local(2019, 9, 30), reduced: true))
+    assert_equal(0.1r, Shouhizei.rate_on(Time.zone.local(2019, 10, 01)))
+    assert_equal(0.1r, Shouhizei.rate_on(Time.zone.local(2019, 12, 01)))
+    assert_equal(0.08r, Shouhizei.rate_on(Time.zone.local(2019, 12, 01), reduced: true))
 
     Time.zone = 'Hawaii'
     assert_equal(0.03r, Shouhizei.rate_on(Time.zone.local(1989, 3, 31, 10, 0, 0)))
