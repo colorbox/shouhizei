@@ -63,7 +63,7 @@ This considers local timezone and changes to `'Asia/Tokyo'` by using `ActiveSupp
 Calculation tax included price.
 Return value class is Integer.
 ```ruby
-Shouhizei.including(price: 100, date: Time.zone.local(2014, 4, 1))
+Shouhizei.including(price: 100, time: Time.zone.local(2014, 4, 1))
  => 108 # return value class is Integer
 ```
 
