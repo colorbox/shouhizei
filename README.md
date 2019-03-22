@@ -65,6 +65,9 @@ Return value class is Integer.
 ```ruby
 Shouhizei.including(price: 100, time: Time.zone.local(2014, 4, 1))
  => 108 # return value class is Integer
+
+Shouhizei.including(price: 100, time: Time.zone.local(2019, 10, 1), reduced: true)
+ => 108 # return value with reduced tax in Integer
 ```
 
 Configuration how to deal fraction round up or round down.
