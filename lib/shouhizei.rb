@@ -19,7 +19,7 @@ module Shouhizei
   end
 
   def self.including(price:, time: Time.current, reduced: false)
-    including_price = price + price * rate_on(time, reduced)
+    including_price = price + price * rate_on(time, reduced: reduced)
     return including_price.round if config[:rounding] == Round
     return including_price.ceil if config[:rounding] == RoundUp
     including_price.floor
