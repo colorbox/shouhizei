@@ -65,6 +65,9 @@ Return value class is Integer.
 ```ruby
 Shouhizei.including(price: 100, time: Time.zone.local(2014, 4, 1))
  => 108 # return value class is Integer
+
+Shouhizei.including(price: 100, time: Time.zone.local(2019, 10, 1), reduced: true)
+ => 108 # return value with reduced tax in Integer
 ```
 
 Configuration how to deal fraction round up or round down.
@@ -88,7 +91,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/shouhizei. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/colorbox/shouhizei. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 

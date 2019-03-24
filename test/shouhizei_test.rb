@@ -24,6 +24,11 @@ class ShouhizeiTest < Minitest::Test
     Time.zone = 'Asia/Tokyo'
     assert_equal(108, Shouhizei.including(price: 100, time: Time.zone.local(2014, 4, 1)))
 
+    assert_equal(108, Shouhizei.including(price: 100, time: Time.zone.local(2019, 9, 30)))
+    assert_equal(108, Shouhizei.including(price: 100, time: Time.zone.local(2019, 9, 30), reduced: true))
+    assert_equal(110, Shouhizei.including(price: 100, time: Time.zone.local(2019, 10, 01)))
+    assert_equal(108, Shouhizei.including(price: 100, time: Time.zone.local(2019, 10, 01), reduced: true))
+
     Timecop.freeze(Time.zone.local(2014, 4, 1)) do
       Shouhizei.config[:rounding] = Shouhizei::RoundUp
       round_up_price = Shouhizei.including(price: 10)
