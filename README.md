@@ -82,6 +82,16 @@ Shouhizei.including(price: 10)
  => 10
 ```
 
+You can use rounding option when use `including` method.
+```ruby
+Shouhizei.config[:rounding] = Shouhizei::RoundUp
+Shouhizei.including(price: 10, rounding: Shouhizei::RoundDown)
+ => 10
+
+Shouhizei.config[:rounding] = Shouhizei::RoundDown
+Shouhizei.including(price: 10, rounding: Shouhizei::RoundUp)
+ => 10
+```
 
 ## Development
 
