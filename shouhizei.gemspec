@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "timecop", "~> 0.9"
+  spec.add_development_dependency "timecop", "~> 0.9.1"
 
-  spec.add_dependency "activesupport", ">= 4.2.0"
+  spec.add_dependency "activesupport", ">= 5.0.0"
 end
