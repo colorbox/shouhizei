@@ -6,6 +6,10 @@ rvm:
   - 2.6.5
   - ruby-head
 
+jobs:
+  allow_failures:
+    - rvm: ruby-head
+
 deploy:
   provider: rubygems
   api_key:
