@@ -33,6 +33,6 @@ module Shouhizei
   private
 
   def self.rate_list
-    @@rate_list ||= YAML.load_file(File.expand_path('./../rate_list.yml', __FILE__))
+    @@rate_list ||= YAML.safe_load_file(File.expand_path('./../rate_list.yml', __FILE__), permitted_classes: [Date])
   end
 end
