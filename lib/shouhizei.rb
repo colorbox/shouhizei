@@ -7,6 +7,7 @@ module Shouhizei
   RoundUp = 'Up'
   RoundDown = 'Down'
   Round = 'Round'
+  ROUNDINGS = [RoundUp, RoundDown, Round].freeze
 
   def self.rate_on(time = Time.current, reduced: false)
     date = time.in_time_zone('Asia/Tokyo').to_date
@@ -19,6 +20,10 @@ module Shouhizei
   end
 
   def self.including(price:, time: Time.current, reduced: false, rounding: config[:rounding])
+    unless ROUNDINGS.include?(rounding)
+      raise ArgumentError, "invalid rounding: #{rounding.inspect} (must be one of Shouhizei::RoundUp, Shouhizei::RoundDown, Shouhizei::Round)"
+    end
+
     including_price = price + price * rate_on(time, reduced: reduced)
 
     return including_price.round if rounding == Round
