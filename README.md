@@ -1,6 +1,6 @@
 # Shouhizei
 
-[![Build Status](https://travis-ci.org/colorbox/shouhizei.svg?branch=master)](https://travis-ci.org/colorbox/shouhizei)
+[![test](https://github.com/colorbox/shouhizei/actions/workflows/test.yml/badge.svg)](https://github.com/colorbox/shouhizei/actions/workflows/test.yml)
 
 This gem support to calculate Japan consumption tax
 
@@ -44,7 +44,7 @@ Shouhizei.rate_on(Time.zone.local(2019, 10, 1), reduced: true) # Return reduced 
  => (2/25)
 
 Shouhizei.rate_on # Returns the current consumption tax
- => (2/25)
+ => (1/10)
 ```
 
 This considers local timezone and changes to `'Asia/Tokyo'` by using `ActiveSupport::TimeWithZone#in_time_zone` .
@@ -70,27 +70,31 @@ Shouhizei.including(price: 100, time: Time.zone.local(2019, 10, 1), reduced: tru
  => 108 # return value with reduced tax in Integer
 ```
 
-Configuration how to deal fraction round up or round down.
+Configuration how to deal fraction round up, round down or round off.
 Default is round down.
 ```ruby
 Shouhizei.config[:rounding] = Shouhizei::RoundUp
-Shouhizei.including(price: 10)
+Shouhizei.including(price: 10, time: Time.zone.local(2014, 4, 1))
  => 11
 
 Shouhizei.config[:rounding] = Shouhizei::RoundDown
-Shouhizei.including(price: 10)
+Shouhizei.including(price: 10, time: Time.zone.local(2014, 4, 1))
  => 10
+
+Shouhizei.config[:rounding] = Shouhizei::Round
+Shouhizei.including(price: 15, time: Time.zone.local(2014, 4, 1))
+ => 16
 ```
 
 You can use rounding option when use `including` method.
 ```ruby
 Shouhizei.config[:rounding] = Shouhizei::RoundUp
-Shouhizei.including(price: 10, rounding: Shouhizei::RoundDown)
+Shouhizei.including(price: 10, time: Time.zone.local(2014, 4, 1), rounding: Shouhizei::RoundDown)
  => 10
 
 Shouhizei.config[:rounding] = Shouhizei::RoundDown
-Shouhizei.including(price: 10, rounding: Shouhizei::RoundUp)
- => 10
+Shouhizei.including(price: 10, time: Time.zone.local(2014, 4, 1), rounding: Shouhizei::RoundUp)
+ => 11
 ```
 
 ## Development
@@ -109,4 +113,4 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Code of Conduct
 
-Everyone interacting in the Shouhizei project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/shouhizei/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Shouhizei project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/colorbox/shouhizei/blob/master/CODE_OF_CONDUCT.md).
