@@ -21,7 +21,9 @@ module Shouhizei
 
   def self.including(price:, time: Time.current, reduced: false, rounding: config[:rounding])
     unless ROUNDINGS.include?(rounding)
-      raise ArgumentError, "invalid rounding: #{rounding.inspect} (must be one of Shouhizei::RoundUp, Shouhizei::RoundDown, Shouhizei::Round)"
+      raise ArgumentError,
+            "invalid rounding: #{rounding.inspect} " \
+            "(must be one of Shouhizei::RoundUp, Shouhizei::RoundDown, Shouhizei::Round)"
     end
 
     including_price = price + price * rate_on(time, reduced: reduced)
