@@ -2,6 +2,15 @@ require 'test_helper'
 require 'timecop'
 
 class ShouhizeiTest < Minitest::Test
+  def test_rate_on_accepts_various_time_types
+    assert_equal(0.08r, Shouhizei.rate_on(Date.new(2019, 9, 30)))
+    assert_equal(0.1r, Shouhizei.rate_on(Date.new(2019, 10, 1)))
+    assert_equal(0.1r, Shouhizei.rate_on('2019-10-01'))
+    assert_equal(0.1r, Shouhizei.rate_on(DateTime.new(2019, 9, 30, 15, 0, 0)))
+    assert_equal(0.08r, Shouhizei.rate_on(Time.utc(2019, 9, 30, 14, 59, 59)))
+    assert_equal(0.1r, Shouhizei.rate_on(Time.utc(2019, 9, 30, 15, 0, 0)))
+  end
+
   def test_rate_on
     Time.zone = 'Asia/Tokyo'
     assert_equal(0.0r,  Shouhizei.rate_on(Time.zone.local(1989, 3, 31)))
