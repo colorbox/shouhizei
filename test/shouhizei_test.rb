@@ -29,6 +29,10 @@ class ShouhizeiTest < Minitest::Test
       assert_predicate(rate, :frozen?)
       rate.each_value { |value| assert_predicate(value, :frozen?) }
     end
+
+    assert_raises(FrozenError) { rate_list[Date.new(2019, 10, 1)]['default'] = '0.5' }
+    assert_raises(FrozenError) { rate_list[Date.new(2030, 1, 1)] = { 'default' => '0.5' } }
+    assert_equal(0.1r, Shouhizei.rate_on(Time.utc(2020, 1, 1)))
   end
 
   def test_price_calculation
