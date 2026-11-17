@@ -9,6 +9,8 @@ module Shouhizei
   Round = 'Round'
 
   def self.rate_on(time = Time.current, reduced: false)
+    raise ArgumentError, 'time must not be nil' if time.nil?
+
     date = time.in_time_zone('Asia/Tokyo').to_date
     rate_list.reverse_each do |key_date, rate|
       rate_key = reduced && rate['reduced'] ? 'reduced' : 'default'

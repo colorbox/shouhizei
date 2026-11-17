@@ -51,6 +51,12 @@ class ShouhizeiTest < Minitest::Test
     end
   end
 
+  def test_nil_time_raises_argument_error
+    assert_raises(ArgumentError) { Shouhizei.rate_on(nil) }
+    assert_raises(ArgumentError) { Shouhizei.rate_on(nil, reduced: true) }
+    assert_raises(ArgumentError) { Shouhizei.including(price: 100, time: nil) }
+  end
+
   def test_price_calculation_with_setting_when_use
     Time.zone = 'Asia/Tokyo'
     Timecop.freeze(Time.zone.local(2014, 4, 1)) do
