@@ -65,4 +65,21 @@ class ShouhizeiTest < Minitest::Test
       assert_kind_of(Integer, round_up_price)
     end
   end
+
+  def test_price_calculation_with_invalid_rounding
+    Time.zone = 'Asia/Tokyo'
+    time = Time.zone.local(2014, 4, 1)
+
+    [:up, 'up', :RoundUp, nil].each do |rounding|
+      error = assert_raises(ArgumentError) do
+        Shouhizei.including(price: 10, time: time, rounding: rounding)
+      end
+      assert_includes(error.message, rounding.inspect)
+    end
+
+    Shouhizei.config[:rounding] = :up
+    assert_raises(ArgumentError) { Shouhizei.including(price: 10, time: time) }
+  ensure
+    Shouhizei.config[:rounding] = Shouhizei::RoundDown
+  end
 end
