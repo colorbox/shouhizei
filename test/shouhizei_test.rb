@@ -20,6 +20,21 @@ class ShouhizeiTest < Minitest::Test
     assert_equal(0.03r, Shouhizei.rate_on(Time.zone.local(1989, 3, 31, 10, 0, 0)))
   end
 
+  def test_rate_list_is_private_and_frozen
+    assert_raises(NoMethodError) { Shouhizei.rate_list }
+
+    rate_list = Shouhizei.send(:rate_list)
+    assert_predicate(rate_list, :frozen?)
+    rate_list.each_value do |rate|
+      assert_predicate(rate, :frozen?)
+      rate.each_value { |value| assert_predicate(value, :frozen?) }
+    end
+
+    assert_raises(FrozenError) { rate_list[Date.new(2019, 10, 1)]['default'] = '0.5' }
+    assert_raises(FrozenError) { rate_list[Date.new(2030, 1, 1)] = { 'default' => '0.5' } }
+    assert_equal(0.1r, Shouhizei.rate_on(Time.utc(2020, 1, 1)))
+  end
+
   def test_price_calculation
     Time.zone = 'Asia/Tokyo'
     assert_equal(108, Shouhizei.including(price: 100, time: Time.zone.local(2014, 4, 1)))

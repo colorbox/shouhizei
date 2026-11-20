@@ -30,9 +30,13 @@ module Shouhizei
     @@config ||= {rounding: RoundDown}
   end
 
-  private
-
   def self.rate_list
-    @@rate_list ||= YAML.safe_load_file(File.expand_path('./../rate_list.yml', __FILE__), permitted_classes: [Date])
+    @@rate_list ||= begin
+      path = File.expand_path('./../rate_list.yml', __FILE__)
+      list = YAML.safe_load_file(path, permitted_classes: [Date])
+      list.each_value { |rate| rate.each_value(&:freeze).freeze }
+      list.freeze
+    end
   end
+  private_class_method :rate_list
 end
