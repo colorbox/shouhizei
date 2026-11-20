@@ -1,7 +1,7 @@
 require 'shouhizei/version'
 require 'yaml'
 require 'active_support'
-require 'active_support/core_ext'
+require 'active_support/time'
 
 module Shouhizei
   RoundUp = 'Up'
